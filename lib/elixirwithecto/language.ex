@@ -7,5 +7,7 @@ defmodule Elixirwithecto.Language do
     field :paradigm, :string
     field :actual_version, :string
     field :active, :boolean, default: true
+
+    timestamps()
   end
 end
