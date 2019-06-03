@@ -10,6 +10,7 @@ defmodule Elixirwithecto.Application do
     children = [
       # Starts a worker by calling: Elixirwithecto.Worker.start_link(arg)
       # {Elixirwithecto.Worker, arg}
+      Elixirwithecto.Repo,
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

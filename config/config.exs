@@ -1,11 +1,12 @@
 # This file is responsible for configuring your application
 # and its dependencies with the aid of the Mix.Config module.
 use Mix.Config
+config :elixirwithecto, ecto_repos:  [Elixirwithecto.Repo]
 
 config :elixirwithecto, Elixirwithecto.Repo,
   database: "elixirwithecto_repo",
-  username: "user",
-  password: "pass",
+  username: "postgres",
+  password: "postgres",
   hostname: "localhost"
 
 # This configuration is loaded before any dependency and is restricted
