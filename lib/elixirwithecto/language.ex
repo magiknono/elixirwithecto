@@ -2,6 +2,7 @@ defmodule Elixirwithecto.Language do
   use Ecto.Schema
   alias Elixirwithecto.{Language, Repo}
   import Ecto.Changeset
+  import Ecto.Query
 
   schema "language" do
     field :name, :string, null: false
@@ -13,7 +14,7 @@ defmodule Elixirwithecto.Language do
     timestamps()
   end
 
-  def languages do
+  def list do
     Repo.all Language
   end
 
@@ -21,6 +22,31 @@ defmodule Elixirwithecto.Language do
     %Language{name: name, first_version: first_version, paradigm: paradigm, actual_version: actual_version}
     |> Repo.insert()
   end
+
+  def name(name) do
+    Repo.get_by!(Language, name: name)
+  end
+
+  def last_added do
+    Language
+    |> last()
+    |> Repo.one()
+  end
+
+  def total do
+    Language
+    query = from l in Language,
+            select: count(l.id)
+    Repo.one(query)
+  end
+
+  def min_year(year) do
+    query = from l in Language,
+            where: l.first_version > ^year,
+            select: l.name
+    Repo.all(query)
+  end
+
 
   def changeset(language, params \\ %{}) do
     language
