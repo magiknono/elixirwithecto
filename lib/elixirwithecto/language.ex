@@ -1,4 +1,8 @@
 defmodule Elixirwithecto.Language do
+  @moduledoc """
+  Language module
+  """
+
   use Ecto.Schema
   alias Elixirwithecto.{Language, Repo}
   import Ecto.Changeset
@@ -40,6 +44,15 @@ defmodule Elixirwithecto.Language do
     Repo.one(query)
   end
 
+  @doc """
+  Return languages created after the given year
+
+  ## Example
+
+      iex> Elixirwithecto.Language.min_year(2000)
+      ["Elixir"]
+
+  """
   def min_year(year) do
     query = from l in Language,
             where: l.first_version > ^year,
